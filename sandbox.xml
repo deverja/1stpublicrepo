@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="OneID-Rule-DormantCert">
+  <Source>
+    <![CDATA[
+import sailpoint.object.CertificationDefinition;
+import sailpoint.object.CertificationGroup;
+import sailpoint.object.Certification;
+import sailpoint.object.CertificationItem;
+import sailpoint.object.CertificationAction;
+
+
+import sailpoint.object.CertificationDefinition;
+import sailpoint.object.CertificationGroup;
+import sailpoint.object.Certification;
+import sailpoint.object.CertificationItem;
+import sailpoint.object.CertificationAction;
+import sailpoint.object.QueryOptions;
+import sailpoint.object.Filter;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+  
+Date today = new Date();
+String dateToday = new SimpleDateFormat("MM/dd/yy").format(today);
+  
+
+System.out.println(dateToday);
+  
+Filter filter = Filter.like("name", "Event Certification ServiceNow Dormant [dateToday",Filter.MatchMode.START);
+  
+  
+
+QueryOptions qo = new QueryOptions();
+qo.addFilter(filter);
+
+Iterator it = context.search(CertificationGroup.class, qo);
+
+  while (it.hasNext()){
+    CertificationGroup cert = (CertificationGroup) it.next();
+    String name = cert.getName();
+    System.out.println("Cert:" + name);
+  }
+sailpoint.tools.Util.flushIterator(it);
+ ]]>
+  </Source>
+</Rule>
