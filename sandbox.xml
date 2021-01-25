@@ -3,6 +3,7 @@
 <Rule language="beanshell" name="OneID-Rule-DormantCert">
   <Source>
     <![CDATA[
+//Sample
 import sailpoint.object.CertificationDefinition;
 import sailpoint.object.CertificationGroup;
 import sailpoint.object.Certification;
